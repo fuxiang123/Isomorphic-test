@@ -1,20 +1,14 @@
 import express from 'express'
 import { renderToString } from 'vue/server-renderer'
-import { createSSRApp } from 'vue'
+import { createApp, createSSRApp } from 'vue'
 
 // 创建一个express实例
 const server = express();
 
 // 通过express.get方法创建一个路由, 作用是当浏览器访问'/'时, 对该请求进行处理
 server.get('/', (req, res) => {
-  // 一个计数的vue组件
-  const counter = {
-    data: () => ({ count: 1 }),
-    template: `<button @click="count++">{{ count }}</button>`
-  }
-  
   // 通过createSSRApp创建一个vue实例
-  const app = createSSRApp(counter);
+  const app = createSSRApp(createApp());
   
   // 通过renderToString将vue实例渲染成字符串
   renderToString(app).then((html) => {
