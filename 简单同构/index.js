@@ -37,6 +37,7 @@ server.get('/', (req, res) => {
   });
 })
 
+// 将当前目录作为静态资源目录，这样浏览器才能访问到client-entry.js
 server.use(express.static('.'));
 
 // 监听3000端口
