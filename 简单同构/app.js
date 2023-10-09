@@ -8,5 +8,3 @@ export function createApp() {
     template: `<button @click="count++">{{ count }}</button>`,
   });
 }
-
-export default createApp;

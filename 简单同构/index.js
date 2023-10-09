@@ -1,6 +1,6 @@
 import express from 'express'
 import { renderToString } from 'vue/server-renderer'
-import { createApp, createSSRApp } from 'vue'
+import { createApp } from './app.js'
 
 // 创建一个express实例
 const server = express();
@@ -8,7 +8,7 @@ const server = express();
 // 通过express.get方法创建一个路由, 作用是当浏览器访问'/'时, 对该请求进行处理
 server.get('/', (req, res) => {
   // 通过createSSRApp创建一个vue实例
-  const app = createSSRApp(createApp());
+  const app = createApp();
   
   // 通过renderToString将vue实例渲染成字符串
   renderToString(app).then((html) => {
@@ -24,7 +24,7 @@ server.get('/', (req, res) => {
               "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
             }
           }
-        </script>
+          </script>
           <script type="module" src="/client-entry.js"></script>
         </head>
         <body>
